@@ -1,3 +1,9 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
 # Local Windows paths (E: drive references)
 E:/
 E:\
@@ -8,6 +14,9 @@ __pycache__/
 *$py.class
 *.so
 .Python
+env/
+venv/
+ENV/
 build/
 develop-eggs/
 dist/
@@ -42,6 +51,23 @@ env/
 Thumbs.db
 desktop.ini
 
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Environment variables
+.env
+.env.local
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
 # Temporary files
 /tmp/
 *.tmp

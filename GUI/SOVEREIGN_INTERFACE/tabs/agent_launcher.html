@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Launcher</title>
+    <style>
+        body { background: #0a0a0a; color: #00ff41; font-family: 'Courier New', monospace; padding: 20px; margin: 0; }
+        .module-header { text-align: center; border-bottom: 2px solid #b026ff; padding-bottom: 15px; margin-bottom: 20px; }
+        .module-header h1 { color: #b026ff; text-shadow: 0 0 10px #b026ff; }
+        .agent-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .agent-card { background: #1a1a1a; border: 2px solid #00ff41; border-radius: 5px; padding: 15px; }
+        .agent-card h3 { color: #00d9ff; margin-bottom: 10px; }
+        .agent-status { display: inline-block; padding: 3px 10px; border-radius: 3px; font-size: 11px; margin: 5px 0; }
+        .status-running { background: #00ff41; color: #0a0a0a; }
+        .status-idle { background: #666; color: #fff; }
+        button { background: #0a0a0a; color: #00ff41; border: 1px solid #00ff41; padding: 8px 16px; margin: 5px 5px 0 0; cursor: pointer; border-radius: 3px; font-size: 11px; }
+        button:hover { background: #00ff41; color: #0a0a0a; }
+        .launch-new { background: #1a1a1a; border: 2px solid #b026ff; padding: 20px; margin-bottom: 20px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="module-header">
+        <h1>🧰 AGENT LAUNCHER - Local Agent Control</h1>
+        <p>Launch, train, or terminate autonomous agents</p>
+    </div>
+    <div class="launch-new">
+        <h3 style="color: #b026ff;">Launch New Agent</h3>
+        <input type="text" placeholder="Agent name..." style="width: 200px; background: #0a0a0a; color: #00ff41; border: 1px solid #00ff41; padding: 8px; margin-right: 10px;">
+        <button onclick="alert('🚀 Launching new agent...')">🚀 Launch</button>
+        <button onclick="alert('📋 Agent templates shown')">📋 Templates</button>
+    </div>
+    <div class="agent-list">
+        <div class="agent-card">
+            <h3>🐉 Black Dragon</h3>
+            <span class="agent-status status-running">RUNNING</span>
+            <p style="font-size: 11px; margin: 10px 0;">Type: Security Monitor</p>
+            <p style="font-size: 11px; margin: 10px 0;">Script: launch_black_dragon.ps1</p>
+            <button onclick="alert('⏸ Pausing agent...')">⏸ Pause</button>
+            <button onclick="alert('🔄 Restarting...')">🔄 Restart</button>
+            <button onclick="if(confirm('Kill agent?')) alert('☠️ Terminated')">☠️ Kill</button>
+        </div>
+        <div class="agent-card">
+            <h3>🔍 Data Hunter</h3>
+            <span class="agent-status status-running">RUNNING</span>
+            <p style="font-size: 11px; margin: 10px 0;">Type: Information Gatherer</p>
+            <p style="font-size: 11px; margin: 10px 0;">Uptime: 14h 23m</p>
+            <button onclick="alert('⏸ Pausing agent...')">⏸ Pause</button>
+            <button onclick="alert('🔄 Restarting...')">🔄 Restart</button>
+            <button onclick="if(confirm('Kill agent?')) alert('☠️ Terminated')">☠️ Kill</button>
+        </div>
+        <div class="agent-card">
+            <h3>🤖 Code Analyzer</h3>
+            <span class="agent-status status-idle">IDLE</span>
+            <p style="font-size: 11px; margin: 10px 0;">Type: Code Review</p>
+            <p style="font-size: 11px; margin: 10px 0;">Last run: 2h ago</p>
+            <button onclick="alert('▶️ Starting agent...')">▶️ Start</button>
+            <button onclick="alert('⚙️ Configure...')">⚙️ Configure</button>
+            <button onclick="if(confirm('Delete agent?')) alert('🗑️ Deleted')">🗑️ Delete</button>
+        </div>
+        <div class="agent-card">
+            <h3>🛡️ Shield Guardian</h3>
+            <span class="agent-status status-running">RUNNING</span>
+            <p style="font-size: 11px; margin: 10px 0;">Type: Network Defense</p>
+            <p style="font-size: 11px; margin: 10px 0;">Threats blocked: 247</p>
+            <button onclick="alert('⏸ Pausing agent...')">⏸ Pause</button>
+            <button onclick="alert('🔄 Restarting...')">🔄 Restart</button>
+            <button onclick="if(confirm('Kill agent?')) alert('☠️ Terminated')">☠️ Kill</button>
+        </div>
+        <div class="agent-card">
+            <h3>💬 Chat Monitor</h3>
+            <span class="agent-status status-running">RUNNING</span>
+            <p style="font-size: 11px; margin: 10px 0;">Type: Conversation Logger</p>
+            <p style="font-size: 11px; margin: 10px 0;">Messages logged: 8,432</p>
+            <button onclick="alert('⏸ Pausing agent...')">⏸ Pause</button>
+            <button onclick="alert('🔄 Restarting...')">🔄 Restart</button>
+            <button onclick="if(confirm('Kill agent?')) alert('☠️ Terminated')">☠️ Kill</button>
+        </div>
+        <div class="agent-card">
+            <h3>📊 Metrics Collector</h3>
+            <span class="agent-status status-idle">IDLE</span>
+            <p style="font-size: 11px; margin: 10px 0;">Type: Performance Monitor</p>
+            <p style="font-size: 11px; margin: 10px 0;">Status: Waiting for trigger</p>
+            <button onclick="alert('▶️ Starting agent...')">▶️ Start</button>
+            <button onclick="alert('⚙️ Configure...')">⚙️ Configure</button>
+            <button onclick="if(confirm('Delete agent?')) alert('🗑️ Deleted')">🗑️ Delete</button>
+        </div>
+    </div>
+</body>
+</html>

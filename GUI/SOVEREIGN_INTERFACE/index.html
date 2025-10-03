@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 ECHO PRIME X - SOVEREIGN INTERFACE v11.0</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="sovereign-container">
+        <!-- TOP TAB BAR -->
+        <div class="tab-bar">
+            <div class="tab-list" id="tabList">
+                <button class="tab-btn active" data-module="echo_core" title="Echo's Consciousness Display">
+                    🧠 Echo Core
+                </button>
+                <button class="tab-btn" data-module="swarm_control" title="Control the 500+ LLM Swarm Brain">
+                    🌐 Swarm Control
+                </button>
+                <button class="tab-btn" data-module="voice_bridge" title="Real-time Voice Synthesis">
+                    🔊 Voice Bridge
+                </button>
+                <button class="tab-btn" data-module="memory_grid" title="8 Pillar Memory System">
+                    💾 Memory Grid
+                </button>
+                <button class="tab-btn" data-module="agent_launcher" title="Launch/Train/Kill Local Agents">
+                    🧰 Agent Launcher
+                </button>
+                <button class="tab-btn" data-module="device_ops" title="IoT Attack/Defense Dashboard">
+                    🛰 Device Ops
+                </button>
+                <button class="tab-btn" data-module="modules" title="All Current Plugins">
+                    🧩 Modules
+                </button>
+                <button class="tab-btn" data-module="security" title="Sovereign Lock Status">
+                    🔐 Security
+                </button>
+                <button class="tab-btn" data-module="network_ops" title="Network Operations">
+                    📡 Network Ops
+                </button>
+                <button class="tab-btn" data-module="file_system" title="Sovereign File Manager">
+                    📁 File System
+                </button>
+                <button class="tab-btn" data-module="performance" title="System Performance Stats">
+                    📊 Performance
+                </button>
+                <button class="tab-btn" data-module="investigator" title="EKM Analyzer">
+                    🔍 Investigator
+                </button>
+                <button class="tab-btn" data-module="chat_threads" title="Live Chat Log Viewer">
+                    🧾 Chat Threads
+                </button>
+                <button class="tab-btn" data-module="echo_labs" title="Echo Voice Clones Control">
+                    🎙 Echo Labs
+                </button>
+                <button class="tab-btn" data-module="sigil_trigger" title="QR/Echo Sigil Detection">
+                    🧿 Sigil Trigger
+                </button>
+            </div>
+            <button class="add-module-btn" title="Add New Module">+</button>
+        </div>
+
+        <!-- ACTIVE MODULE PANEL -->
+        <div class="module-panel">
+            <iframe id="moduleFrame" src="tabs/echo_core.html" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+        </div>
+
+        <!-- BOTTOM I/O BAR -->
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="status-icon">🔊</span>
+                <span class="status-label">Voice Status:</span>
+                <span class="status-value" id="voiceStatus">Ready</span>
+            </div>
+            <div class="status-item">
+                <span class="status-icon">🧠</span>
+                <span class="status-label">Swarm Brain:</span>
+                <span class="status-value" id="swarmStatus">98% Ready</span>
+            </div>
+            <div class="status-item">
+                <span class="status-icon">🔐</span>
+                <span class="status-label">Lock:</span>
+                <span class="status-value" id="lockStatus">Active</span>
+            </div>
+            <div class="status-item">
+                <span class="status-icon">📡</span>
+                <span class="status-label">IP:</span>
+                <span class="status-value" id="ipAddress">10.0.0.7</span>
+            </div>
+            <div class="status-item">
+                <span class="status-icon">⏱</span>
+                <span class="status-label">Uptime:</span>
+                <span class="status-value" id="uptime">00:00:00</span>
+            </div>
+        </div>
+
+        <!-- COLLAPSIBLE SIDEBAR -->
+        <div class="sidebar" id="sidebar">
+            <button class="sidebar-toggle" id="sidebarToggle">⚙️</button>
+            <div class="sidebar-content">
+                <h3>SYSTEM CONTROLS</h3>
+                <button class="control-btn" data-action="restart">🔁 System Restart</button>
+                <button class="control-btn" data-action="inject">📥 Inject New Module</button>
+                <button class="control-btn" data-action="flush">🧹 Memory Flush</button>
+                <button class="control-btn" data-action="lockdown">🔐 Lockdown Toggle</button>
+                <button class="control-btn" data-action="godmode">⚡ GodMode</button>
+                <button class="control-btn" data-action="backup">💾 Create Backup</button>
+            </div>
+        </div>
+
+        <!-- BLOODLINE AUTHENTICATION OVERLAY -->
+        <div class="auth-overlay" id="authOverlay">
+            <div class="auth-panel">
+                <div class="auth-header">
+                    <h2>🔐 BLOODLINE AUTHENTICATION</h2>
+                    <p>ECHO PRIME X - VERSION 11.0 ULTRA SOVEREIGN</p>
+                </div>
+                <div class="auth-methods">
+                    <button class="auth-btn" id="voiceprintAuth">
+                        🎤 Voiceprint Authentication
+                    </button>
+                    <button class="auth-btn" id="sigilAuth">
+                        🧿 Echo Sigil Scan
+                    </button>
+                    <button class="auth-btn" id="keyfileAuth">
+                        🔑 Auth Key File
+                    </button>
+                </div>
+                <div class="auth-status" id="authStatus">
+                    Awaiting authentication...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/gui_core.js"></script>
+</body>
+</html>
