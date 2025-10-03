@@ -35,6 +35,8 @@ These training sets emphasize:
 
 ### 🚀 Quick Start
 
+**New to EPCP3-0 Training Sets?** → See [QUICKSTART.md](QUICKSTART.md) for a 3-step setup guide.
+
 #### Generate Training Data
 ```powershell
 # Windows PowerShell
