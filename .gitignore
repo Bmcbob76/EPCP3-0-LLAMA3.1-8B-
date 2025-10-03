@@ -4,6 +4,9 @@ npm-debug.log
 yarn-error.log
 package-lock.json
 yarn.lock
+# Local Windows paths (E: drive references)
+E:/
+E:\
 
 # Python
 __pycache__/
@@ -14,6 +17,26 @@ __pycache__/
 env/
 venv/
 ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
 .venv
 
 # IDE
@@ -45,3 +68,12 @@ temp/
 dist/
 build/
 *.egg-info/
+# Temporary files
+/tmp/
+*.tmp
+*.bak
+*.log
+
+# Optional: Exclude generated training data if it contains sensitive info
+# Uncomment if needed:
+# EPCP3-0/epcp3-0-train.jsonl
