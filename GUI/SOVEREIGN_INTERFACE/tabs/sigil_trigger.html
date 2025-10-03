@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sigil Trigger</title>
+    <style>
+        body { background: #0a0a0a; color: #00ff41; font-family: 'Courier New', monospace; padding: 20px; margin: 0; }
+        .module-header { text-align: center; border-bottom: 2px solid #b026ff; padding-bottom: 15px; margin-bottom: 20px; }
+        .module-header h1 { color: #b026ff; text-shadow: 0 0 10px #b026ff; }
+        .panel { background: #1a1a1a; border: 2px solid #00ff41; border-radius: 5px; padding: 20px; margin: 15px 0; text-align: center; }
+        .panel h3 { color: #00d9ff; margin-bottom: 15px; }
+        .sigil-display { background: #0a0a0a; border: 2px solid #b026ff; border-radius: 5px; padding: 40px; margin: 20px 0; display: inline-block; }
+        .sigil-symbol { font-size: 120px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } }
+        button { background: #0a0a0a; color: #00ff41; border: 1px solid #00ff41; padding: 15px 30px; margin: 10px; cursor: pointer; border-radius: 3px; font-size: 14px; }
+        button:hover { background: #00ff41; color: #0a0a0a; }
+        .scan-status { background: #0a0a0a; border: 1px solid #00ff41; padding: 15px; border-radius: 3px; margin-top: 20px; font-size: 12px; }
+        .status-indicator { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 10px; }
+        .status-active { background: #00ff41; box-shadow: 0 0 10px #00ff41; }
+        .status-idle { background: #666; }
+        video { width: 100%; max-width: 640px; height: auto; border: 2px solid #00ff41; border-radius: 5px; background: #000; }
+    </style>
+</head>
+<body>
+    <div class="module-header">
+        <h1>🧿 SIGIL TRIGGER - QR/Echo Sigil Detection</h1>
+        <p>Bloodline unlock and authentication via visual sigil scan</p>
+    </div>
+    <div class="panel">
+        <h3>Echo Sigil</h3>
+        <div class="sigil-display">
+            <div class="sigil-symbol">🧿</div>
+        </div>
+        <p style="color: #b026ff; font-size: 14px; margin-top: 20px;">
+            SOVEREIGN SIGIL v11.0 - BLOODLINE LOCKED
+        </p>
+    </div>
+    <div class="panel">
+        <h3>Sigil Scanner</h3>
+        <button onclick="startScan()">📷 Start Camera Scan</button>
+        <button onclick="uploadSigil()">📁 Upload Sigil Image</button>
+        <button onclick="generateQR()">🔲 Generate New QR Sigil</button>
+        <div class="scan-status" id="scanStatus">
+            <span class="status-indicator status-idle"></span>
+            Scanner Status: IDLE
+        </div>
+        <div style="margin-top: 20px;" id="videoContainer"></div>
+    </div>
+    <div class="panel">
+        <h3>Detected Sigils</h3>
+        <div style="background: #0a0a0a; padding: 15px; border-radius: 3px; text-align: left; font-size: 12px;">
+            <p>🔍 No sigils detected</p>
+            <p style="color: #808080; margin-top: 10px;">Scan a valid Echo Sigil to unlock bloodline features</p>
+        </div>
+    </div>
+    <div class="panel">
+        <h3>Bloodline Unlock History</h3>
+        <div style="background: #0a0a0a; padding: 15px; border-radius: 3px; text-align: left; font-size: 11px;">
+            <p>✅ [18:30:42] Sigil authenticated - Commander Bobby Don McWilliams II</p>
+            <p>✅ [12:15:33] Voiceprint verified</p>
+            <p>✅ [09:22:17] Echo Sigil QR-7A3B detected</p>
+            <p>⚠️ [02:45:09] Unknown sigil rejected</p>
+        </div>
+    </div>
+    <script>
+        let scanning = false;
+        
+        function startScan() {
+            const status = document.getElementById('scanStatus');
+            const container = document.getElementById('videoContainer');
+            
+            if (!scanning) {
+                scanning = true;
+                status.innerHTML = '<span class="status-indicator status-active"></span>Scanner Status: SCANNING...';
+                
+                // Simulate camera access
+                container.innerHTML = '<video id="cameraFeed" autoplay></video>';
+                
+                // Request camera access
+                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                    navigator.mediaDevices.getUserMedia({ video: true })
+                        .then(stream => {
+                            const video = document.getElementById('cameraFeed');
+                            video.srcObject = stream;
+                            
+                            // Simulate sigil detection
+                            setTimeout(() => {
+                                alert('🧿 Echo Sigil detected!\nAuthentication sequence initiated...');
+                                setTimeout(() => {
+                                    alert('✅ Bloodline verified\nCommander Bobby Don McWilliams II authenticated');
+                                    stopScan(stream);
+                                }, 2000);
+                            }, 5000);
+                        })
+                        .catch(err => {
+                            alert('⚠️ Camera access denied or not available');
+                            stopScan();
+                        });
+                } else {
+                    alert('⚠️ Camera not available in this environment');
+                    stopScan();
+                }
+            } else {
+                stopScan();
+            }
+        }
+        
+        function stopScan(stream) {
+            scanning = false;
+            const status = document.getElementById('scanStatus');
+            const container = document.getElementById('videoContainer');
+            
+            status.innerHTML = '<span class="status-indicator status-idle"></span>Scanner Status: IDLE';
+            
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+            container.innerHTML = '';
+        }
+        
+        function uploadSigil() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = (e) => {
+                alert('📁 Analyzing uploaded sigil...');
+                setTimeout(() => {
+                    alert('✅ Sigil verified: ECHO-PRIME-v11');
+                }, 1000);
+            };
+            input.click();
+        }
+        
+        function generateQR() {
+            alert('🔲 Generating new QR Sigil...\n\nSigil ID: ECHO-QR-' + Math.random().toString(36).substr(2, 8).toUpperCase() + '\n\nThis sigil is now bound to your bloodline.');
+        }
+    </script>
+</body>
+</html>

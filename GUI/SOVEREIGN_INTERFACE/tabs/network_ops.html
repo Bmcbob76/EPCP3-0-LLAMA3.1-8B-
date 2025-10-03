@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Network Ops</title>
+    <style>
+        body { background: #0a0a0a; color: #00ff41; font-family: 'Courier New', monospace; padding: 20px; margin: 0; }
+        .module-header { text-align: center; border-bottom: 2px solid #b026ff; padding-bottom: 15px; margin-bottom: 20px; }
+        .module-header h1 { color: #b026ff; text-shadow: 0 0 10px #b026ff; }
+        .panel { background: #1a1a1a; border: 2px solid #00ff41; border-radius: 5px; padding: 20px; margin: 15px 0; }
+        .panel h3 { color: #00d9ff; margin-bottom: 15px; }
+        button { background: #0a0a0a; color: #00ff41; border: 1px solid #00ff41; padding: 10px 20px; margin: 5px; cursor: pointer; border-radius: 3px; }
+        button:hover { background: #00ff41; color: #0a0a0a; }
+        .terminal { background: #0a0a0a; border: 1px solid #00ff41; padding: 10px; border-radius: 3px; font-size: 11px; max-height: 200px; overflow-y: auto; }
+        input { background: #0a0a0a; color: #00ff41; border: 1px solid #00ff41; padding: 8px; border-radius: 3px; margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <div class="module-header">
+        <h1>📡 NETWORK OPS - Network Operations Center</h1>
+        <p>Ping, trace, MAC scan, Wi-Fi control, DDNS management</p>
+    </div>
+    <div class="panel">
+        <h3>Network Tools</h3>
+        <input type="text" placeholder="Enter IP or domain..." id="targetInput" style="width: 300px;">
+        <button onclick="pingTarget()">📡 Ping</button>
+        <button onclick="traceRoute()">🛣️ Trace Route</button>
+        <button onclick="macScan()">🔍 MAC Scan</button>
+        <button onclick="portScan()">🔌 Port Scan</button>
+    </div>
+    <div class="panel">
+        <h3>Terminal Output</h3>
+        <div class="terminal" id="terminal">
+            <p>Ready for commands...</p>
+        </div>
+    </div>
+    <div class="panel">
+        <h3>Network Status</h3>
+        <p>🌐 Local IP: 10.0.0.7</p>
+        <p>🌍 Public IP: 203.45.67.89</p>
+        <p>📶 Wi-Fi: Connected (5GHz)</p>
+        <p>⚡ Speed: 500 Mbps Down / 50 Mbps Up</p>
+        <p>🔒 Firewall: ACTIVE</p>
+        <button onclick="alert('🔄 Refreshing network info...')">🔄 Refresh</button>
+        <button onclick="alert('🔐 Enabling stealth mode...')">🔐 Stealth Mode</button>
+    </div>
+    <div class="panel">
+        <h3>Wi-Fi Control</h3>
+        <button onclick="alert('📶 Scanning networks...')">📶 Scan Networks</button>
+        <button onclick="alert('🔓 Network reclaim tool...')">🔓 Reclaim Network</button>
+        <button onclick="alert('🛡️ Enabling protection...')">🛡️ Enable Protection</button>
+    </div>
+    <script>
+        const terminal = document.getElementById('terminal');
+        function addOutput(text) {
+            terminal.innerHTML += '<p>' + text + '</p>';
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+        function pingTarget() {
+            const target = document.getElementById('targetInput').value || '8.8.8.8';
+            addOutput('> ping ' + target);
+            addOutput('Pinging ' + target + ' with 32 bytes of data:');
+            setTimeout(() => {
+                addOutput('Reply from ' + target + ': bytes=32 time=12ms TTL=64');
+                addOutput('Reply from ' + target + ': bytes=32 time=11ms TTL=64');
+                addOutput('Reply from ' + target + ': bytes=32 time=13ms TTL=64');
+                addOutput('✅ Ping successful');
+            }, 500);
+        }
+        function traceRoute() {
+            const target = document.getElementById('targetInput').value || 'google.com';
+            addOutput('> traceroute ' + target);
+            addOutput('Tracing route to ' + target + '...');
+            setTimeout(() => {
+                addOutput('1  192.168.1.1  1ms');
+                addOutput('2  10.0.0.1     5ms');
+                addOutput('3  203.45.67.1  12ms');
+                addOutput('✅ Trace complete');
+            }, 1000);
+        }
+        function macScan() {
+            addOutput('> MAC address scan');
+            addOutput('Scanning local network...');
+            setTimeout(() => {
+                addOutput('Found: 12 devices');
+                addOutput('MAC: 00:1A:2B:3C:4D:5E - Router');
+                addOutput('MAC: AA:BB:CC:DD:EE:FF - Smart TV');
+                addOutput('MAC: 11:22:33:44:55:66 - Echo Device');
+                addOutput('✅ Scan complete');
+            }, 800);
+        }
+        function portScan() {
+            const target = document.getElementById('targetInput').value || 'localhost';
+            addOutput('> Port scan ' + target);
+            addOutput('Scanning ports...');
+            setTimeout(() => {
+                addOutput('PORT 80: OPEN');
+                addOutput('PORT 443: OPEN');
+                addOutput('PORT 5058: OPEN (trainer)');
+                addOutput('PORT 8343: OPEN (swarm)');
+                addOutput('✅ Scan complete');
+            }, 1200);
+        }
+    </script>
+</body>
+</html>

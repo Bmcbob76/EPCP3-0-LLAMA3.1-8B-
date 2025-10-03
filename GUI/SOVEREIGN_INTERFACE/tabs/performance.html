@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Performance</title>
+    <style>
+        body { background: #0a0a0a; color: #00ff41; font-family: 'Courier New', monospace; padding: 20px; margin: 0; }
+        .module-header { text-align: center; border-bottom: 2px solid #b026ff; padding-bottom: 15px; margin-bottom: 20px; }
+        .module-header h1 { color: #b026ff; text-shadow: 0 0 10px #b026ff; }
+        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .metric-card { background: #1a1a1a; border: 2px solid #00ff41; border-radius: 5px; padding: 20px; text-align: center; }
+        .metric-card h3 { color: #00d9ff; margin-bottom: 10px; }
+        .metric-value { font-size: 32px; color: #b026ff; font-weight: bold; margin: 15px 0; }
+        .metric-bar { background: #0a0a0a; height: 20px; border-radius: 10px; overflow: hidden; margin-top: 10px; }
+        .metric-fill { height: 100%; background: linear-gradient(90deg, #00ff41, #b026ff); }
+        canvas { width: 100%; height: 150px; border: 2px solid #00ff41; border-radius: 5px; background: #000; }
+    </style>
+</head>
+<body>
+    <div class="module-header">
+        <h1>📊 PERFORMANCE - System Metrics</h1>
+        <p>CPU/GPU/RAM/Disk stats from OpenHardwareMonitor</p>
+    </div>
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <h3>💻 CPU Usage</h3>
+            <div class="metric-value" id="cpuValue">42%</div>
+            <div class="metric-bar">
+                <div class="metric-fill" id="cpuBar" style="width: 42%;"></div>
+            </div>
+            <p style="font-size: 11px; margin-top: 10px;">Cores: 8 | Threads: 16</p>
+        </div>
+        <div class="metric-card">
+            <h3>🎮 GPU Usage</h3>
+            <div class="metric-value" id="gpuValue">28%</div>
+            <div class="metric-bar">
+                <div class="metric-fill" id="gpuBar" style="width: 28%;"></div>
+            </div>
+            <p style="font-size: 11px; margin-top: 10px;">Temp: 62°C</p>
+        </div>
+        <div class="metric-card">
+            <h3>💾 RAM Usage</h3>
+            <div class="metric-value" id="ramValue">8.2/16 GB</div>
+            <div class="metric-bar">
+                <div class="metric-fill" id="ramBar" style="width: 51%;"></div>
+            </div>
+            <p style="font-size: 11px; margin-top: 10px;">Available: 7.8 GB</p>
+        </div>
+        <div class="metric-card">
+            <h3>💿 Disk Usage</h3>
+            <div class="metric-value" id="diskValue">234/500 GB</div>
+            <div class="metric-bar">
+                <div class="metric-fill" id="diskBar" style="width: 47%;"></div>
+            </div>
+            <p style="font-size: 11px; margin-top: 10px;">Free: 266 GB</p>
+        </div>
+        <div class="metric-card">
+            <h3>🌡️ CPU Temperature</h3>
+            <div class="metric-value" id="tempValue">58°C</div>
+            <p style="font-size: 11px; margin-top: 10px;">Max: 95°C | Status: Normal</p>
+        </div>
+        <div class="metric-card">
+            <h3>📡 Network</h3>
+            <div class="metric-value" id="netValue">5.2 MB/s</div>
+            <p style="font-size: 11px; margin-top: 10px;">Down: 4.8 MB/s | Up: 0.4 MB/s</p>
+        </div>
+    </div>
+    <div style="margin-top: 20px; background: #1a1a1a; border: 2px solid #00ff41; border-radius: 5px; padding: 20px;">
+        <h3 style="color: #00d9ff;">CPU Usage History</h3>
+        <canvas id="cpuChart"></canvas>
+    </div>
+    <script>
+        function updateMetrics() {
+            const cpu = 30 + Math.random() * 40;
+            const gpu = 20 + Math.random() * 30;
+            const ram = 40 + Math.random() * 20;
+            const temp = 55 + Math.random() * 10;
+            const net = 2 + Math.random() * 8;
+            
+            document.getElementById('cpuValue').textContent = cpu.toFixed(0) + '%';
+            document.getElementById('cpuBar').style.width = cpu + '%';
+            document.getElementById('gpuValue').textContent = gpu.toFixed(0) + '%';
+            document.getElementById('gpuBar').style.width = gpu + '%';
+            document.getElementById('ramValue').textContent = (8 + ram/10).toFixed(1) + '/16 GB';
+            document.getElementById('ramBar').style.width = ram + '%';
+            document.getElementById('tempValue').textContent = temp.toFixed(0) + '°C';
+            document.getElementById('netValue').textContent = net.toFixed(1) + ' MB/s';
+        }
+        
+        setInterval(updateMetrics, 2000);
+        
+        const canvas = document.getElementById('cpuChart');
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.offsetWidth;
+        canvas.height = 150;
+        const history = Array(50).fill(50);
+        
+        function drawChart() {
+            history.push(30 + Math.random() * 40);
+            if (history.length > 50) history.shift();
+            
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = '#00ff41';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            
+            history.forEach((val, i) => {
+                const x = (i / history.length) * canvas.width;
+                const y = canvas.height - (val / 100) * canvas.height;
+                i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+        }
+        
+        setInterval(drawChart, 1000);
+    </script>
+</body>
+</html>

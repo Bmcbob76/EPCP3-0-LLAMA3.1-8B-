@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swarm Control</title>
+    <style>
+        body {
+            background: #0a0a0a;
+            color: #00ff41;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            margin: 0;
+        }
+        .module-header {
+            text-align: center;
+            border-bottom: 2px solid #b026ff;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .module-header h1 {
+            color: #b026ff;
+            text-shadow: 0 0 10px #b026ff;
+        }
+        .swarm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .swarm-node {
+            background: #1a1a1a;
+            border: 2px solid #00ff41;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .swarm-node:hover {
+            background: #00ff41;
+            color: #0a0a0a;
+            box-shadow: 0 0 15px #00ff41;
+        }
+        .swarm-node.active {
+            border-color: #b026ff;
+            box-shadow: 0 0 10px #b026ff;
+        }
+        .control-panel {
+            background: #1a1a1a;
+            border: 2px solid #00d9ff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .control-btn {
+            background: #0a0a0a;
+            color: #00ff41;
+            border: 1px solid #00ff41;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .control-btn:hover {
+            background: #00ff41;
+            color: #0a0a0a;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .stat-box {
+            background: #1a1a1a;
+            border: 2px solid #00ff41;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 24px;
+            color: #b026ff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="module-header">
+        <h1>🌐 SWARM CONTROL - 500+ LLM Brain Network</h1>
+        <p>Distributed AI consciousness management and orchestration</p>
+    </div>
+
+    <div class="control-panel">
+        <h3>Swarm Operations</h3>
+        <button class="control-btn" onclick="activateAll()">🔋 Activate All Nodes</button>
+        <button class="control-btn" onclick="pauseSwarm()">⏸ Pause Swarm</button>
+        <button class="control-btn" onclick="syncNodes()">🔄 Sync All Nodes</button>
+        <button class="control-btn" onclick="redistributeLoad()">⚖️ Redistribute Load</button>
+        <button class="control-btn" onclick="emergencyStop()">🛑 Emergency Stop</button>
+    </div>
+
+    <div class="stats">
+        <div class="stat-box">
+            <div>Active Nodes</div>
+            <div class="stat-value" id="activeNodes">487</div>
+        </div>
+        <div class="stat-box">
+            <div>Total Capacity</div>
+            <div class="stat-value">500</div>
+        </div>
+        <div class="stat-box">
+            <div>Average Load</div>
+            <div class="stat-value" id="avgLoad">42%</div>
+        </div>
+        <div class="stat-box">
+            <div>Response Time</div>
+            <div class="stat-value" id="responseTime">89ms</div>
+        </div>
+    </div>
+
+    <h3 style="margin-top: 30px;">Node Grid (Click to inspect)</h3>
+    <div class="swarm-grid" id="swarmGrid"></div>
+
+    <script>
+        // Generate swarm nodes
+        const grid = document.getElementById('swarmGrid');
+        for (let i = 1; i <= 500; i++) {
+            const node = document.createElement('div');
+            node.className = 'swarm-node' + (Math.random() > 0.05 ? ' active' : '');
+            node.innerHTML = `
+                <div>NODE-${String(i).padStart(3, '0')}</div>
+                <div style="font-size: 10px; margin-top: 5px;">
+                    ${node.classList.contains('active') ? '🟢 ACTIVE' : '🔴 IDLE'}
+                </div>
+            `;
+            node.onclick = () => {
+                alert(`Node ${i} Details:\nStatus: ${node.classList.contains('active') ? 'ACTIVE' : 'IDLE'}\nModel: LLAMA3.1-8B\nLoad: ${Math.floor(Math.random() * 100)}%\nUptime: ${Math.floor(Math.random() * 1000)}h`);
+            };
+            grid.appendChild(node);
+        }
+
+        function activateAll() {
+            document.querySelectorAll('.swarm-node').forEach(node => {
+                node.classList.add('active');
+                node.innerHTML = node.innerHTML.replace('🔴 IDLE', '🟢 ACTIVE');
+            });
+            document.getElementById('activeNodes').textContent = '500';
+            alert('✅ All nodes activated');
+        }
+
+        function pauseSwarm() {
+            alert('⏸ Swarm operations paused');
+        }
+
+        function syncNodes() {
+            alert('🔄 Synchronizing all nodes...');
+            setTimeout(() => alert('✅ Sync complete'), 1500);
+        }
+
+        function redistributeLoad() {
+            alert('⚖️ Redistributing computational load...');
+        }
+
+        function emergencyStop() {
+            if (confirm('⚠️ Emergency stop will halt all swarm operations. Continue?')) {
+                alert('🛑 Emergency stop activated');
+            }
+        }
+
+        // Update stats
+        setInterval(() => {
+            const active = document.querySelectorAll('.swarm-node.active').length;
+            document.getElementById('activeNodes').textContent = active;
+            document.getElementById('avgLoad').textContent = (30 + Math.random() * 20).toFixed(0) + '%';
+            document.getElementById('responseTime').textContent = (50 + Math.random() * 100).toFixed(0) + 'ms';
+        }, 2000);
+    </script>
+</body>
+</html>
