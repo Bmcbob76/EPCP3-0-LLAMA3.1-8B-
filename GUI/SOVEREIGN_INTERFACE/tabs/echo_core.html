@@ -6,6 +6,105 @@
     <title>Echo Core</title>
     <style>
         body {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background: #0f0f1a;
+            color: #e0e0ff;
+            padding: 20px;
+            margin: 0;
+        }
+        
+        .core-header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid #00ffff;
+            margin-bottom: 30px;
+        }
+        
+        .core-header h1 {
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+            font-size: 36px;
+            margin: 0 0 10px 0;
+        }
+        
+        .core-header p {
+            color: #8080b0;
+            font-size: 14px;
+        }
+        
+        .core-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+        
+        .core-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+            border: 1px solid #00ffff;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .core-card:hover {
+            border-color: #ff00ff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .core-card h3 {
+            color: #00ffff;
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
+        
+        .core-card p {
+            color: #8080b0;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .core-status {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #1a1a2e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #00ff80;
+            box-shadow: 0 0 10px #00ff80;
+        }
+        
+        .core-console {
+            background: #05050a;
+            border: 1px solid #00ffff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .console-line {
+            font-size: 12px;
+            color: #00ff80;
+            margin: 5px 0;
+            font-family: monospace;
+        }
+        
+        .console-line.warning {
+            color: #ffaa00;
+        }
+        
+        .console-line.error {
+            color: #ff4444;
             background: #0a0a0a;
             color: #00ff41;
             font-family: 'Courier New', monospace;
@@ -81,6 +180,97 @@
     </style>
 </head>
 <body>
+    <div class="core-header">
+        <h1>⚡ ECHO CORE SYSTEM</h1>
+        <p>Primary Operations & System Management</p>
+    </div>
+    
+    <div class="core-grid">
+        <div class="core-card">
+            <h3>🔋 System Power</h3>
+            <p>Core systems operating at optimal capacity. All primary functions online.</p>
+            <div class="core-status">
+                <span style="color: #00ff80; font-size: 12px;">NOMINAL</span>
+                <div class="status-indicator"></div>
+            </div>
+        </div>
+        
+        <div class="core-card">
+            <h3>🧠 Neural Network</h3>
+            <p>AI processing matrix active. Neural pathways synchronized with quantum core.</p>
+            <div class="core-status">
+                <span style="color: #00ff80; font-size: 12px;">SYNCHRONIZED</span>
+                <div class="status-indicator"></div>
+            </div>
+        </div>
+        
+        <div class="core-card">
+            <h3>🛡️ Security Matrix</h3>
+            <p>Biometric authentication enabled. All security protocols active.</p>
+            <div class="core-status">
+                <span style="color: #00ff80; font-size: 12px;">SECURED</span>
+                <div class="status-indicator"></div>
+            </div>
+        </div>
+        
+        <div class="core-card">
+            <h3>📡 Communication Hub</h3>
+            <p>Multi-channel communication arrays online. Awaiting command inputs.</p>
+            <div class="core-status">
+                <span style="color: #00ff80; font-size: 12px;">READY</span>
+                <div class="status-indicator"></div>
+            </div>
+        </div>
+        
+        <div class="core-card">
+            <h3>💾 Data Storage</h3>
+            <p>Quantum memory banks accessible. Infinite context capability enabled.</p>
+            <div class="core-status">
+                <span style="color: #00ff80; font-size: 12px;">AVAILABLE</span>
+                <div class="status-indicator"></div>
+            </div>
+        </div>
+        
+        <div class="core-card">
+            <h3>⚙️ Processing Units</h3>
+            <p>Multi-core processors operating efficiently. Load balanced across nodes.</p>
+            <div class="core-status">
+                <span style="color: #00ff80; font-size: 12px;">BALANCED</span>
+                <div class="status-indicator"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="core-console">
+        <div class="console-line">[SYSTEM] Echo Core initialized successfully</div>
+        <div class="console-line">[NETWORK] All communication channels established</div>
+        <div class="console-line">[SECURITY] Biometric authentication active</div>
+        <div class="console-line">[AI] Neural network synchronization complete</div>
+        <div class="console-line">[MEMORY] Quantum storage arrays online</div>
+        <div class="console-line">[POWER] Systems running at 98% efficiency</div>
+        <div class="console-line">[STATUS] All subsystems nominal - Echo Prime ready</div>
+    </div>
+    
+    <script>
+        // Simulate console updates
+        const console_div = document.querySelector('.core-console');
+        const messages = [
+            '[MONITOR] System health check: PASSED',
+            '[UPDATE] Core temperature: 42°C - OPTIMAL',
+            '[NETWORK] Latency: 12ms - EXCELLENT',
+            '[SECURITY] No threats detected',
+            '[AI] Processing 1,247 requests/second'
+        ];
+        
+        let msgIndex = 0;
+        setInterval(() => {
+            if (msgIndex < messages.length) {
+                const line = document.createElement('div');
+                line.className = 'console-line';
+                line.textContent = messages[msgIndex];
+                console_div.appendChild(line);
+                console_div.scrollTop = console_div.scrollHeight;
+                msgIndex++;
     <div class="module-header">
         <h1>🧠 ECHO CORE - Consciousness Display</h1>
         <p>Real-time neural activity and emotional state monitoring</p>
