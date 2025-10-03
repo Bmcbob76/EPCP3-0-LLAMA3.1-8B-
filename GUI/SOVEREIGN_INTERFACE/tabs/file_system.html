@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File System</title>
+    <style>
+        body { background: #0a0a0a; color: #00ff41; font-family: 'Courier New', monospace; padding: 20px; margin: 0; }
+        .module-header { text-align: center; border-bottom: 2px solid #b026ff; padding-bottom: 15px; margin-bottom: 20px; }
+        .module-header h1 { color: #b026ff; text-shadow: 0 0 10px #b026ff; }
+        .file-browser { background: #1a1a1a; border: 2px solid #00ff41; border-radius: 5px; padding: 20px; }
+        .path-bar { background: #0a0a0a; border: 1px solid #00ff41; padding: 10px; border-radius: 3px; margin-bottom: 15px; }
+        .file-list { max-height: 400px; overflow-y: auto; }
+        .file-item { background: #0a0a0a; border: 1px solid #00ff41; padding: 10px; margin: 5px 0; border-radius: 3px; cursor: pointer; display: flex; justify-content: space-between; }
+        .file-item:hover { background: #00ff41; color: #0a0a0a; }
+        .file-icon { margin-right: 10px; }
+        button { background: #0a0a0a; color: #00ff41; border: 1px solid #00ff41; padding: 8px 16px; margin: 5px; cursor: pointer; border-radius: 3px; font-size: 11px; }
+        button:hover { background: #00ff41; color: #0a0a0a; }
+    </style>
+</head>
+<body>
+    <div class="module-header">
+        <h1>📁 FILE SYSTEM - Sovereign File Manager</h1>
+        <p>Access to encrypted zones and system files</p>
+    </div>
+    <div class="file-browser">
+        <div class="path-bar">
+            <span style="color: #b026ff;">📂 Current Path:</span> E:\ECHO_X_V4\
+        </div>
+        <div style="margin-bottom: 15px;">
+            <button onclick="alert('📂 Creating folder...')">➕ New Folder</button>
+            <button onclick="alert('📄 Creating file...')">➕ New File</button>
+            <button onclick="alert('⬆️ Uploading...')">⬆️ Upload</button>
+            <button onclick="alert('🔍 Search...')">🔍 Search</button>
+            <button onclick="alert('🔐 Opening vault...')">🔐 Encrypted Zone</button>
+        </div>
+        <div class="file-list">
+            <div class="file-item" onclick="alert('Opening GUI folder...')">
+                <span><span class="file-icon">📁</span> GUI</span>
+                <span style="font-size: 11px;">Folder</span>
+            </div>
+            <div class="file-item" onclick="alert('Opening Backend folder...')">
+                <span><span class="file-icon">📁</span> Backend</span>
+                <span style="font-size: 11px;">Folder</span>
+            </div>
+            <div class="file-item" onclick="alert('Opening Agents folder...')">
+                <span><span class="file-icon">📁</span> Agents</span>
+                <span style="font-size: 11px;">Folder</span>
+            </div>
+            <div class="file-item" onclick="alert('Opening Memory folder...')">
+                <span><span class="file-icon">📁</span> Memory</span>
+                <span style="font-size: 11px;">Folder</span>
+            </div>
+            <div class="file-item" onclick="alert('🔐 ENCRYPTED - Requires bloodline auth')">
+                <span><span class="file-icon">🔒</span> PhoenixVault</span>
+                <span style="font-size: 11px; color: #b026ff;">ENCRYPTED</span>
+            </div>
+            <div class="file-item" onclick="alert('Opening launch_stack.ps1...')">
+                <span><span class="file-icon">📜</span> launch_stack.ps1</span>
+                <span style="font-size: 11px;">PowerShell Script</span>
+            </div>
+            <div class="file-item" onclick="alert('Opening config.json...')">
+                <span><span class="file-icon">📄</span> config.json</span>
+                <span style="font-size: 11px;">Configuration</span>
+            </div>
+            <div class="file-item" onclick="alert('Opening README.md...')">
+                <span><span class="file-icon">📄</span> README.md</span>
+                <span style="font-size: 11px;">Documentation</span>
+            </div>
+            <div class="file-item" onclick="alert('🔐 ENCRYPTED - Requires bloodline auth')">
+                <span><span class="file-icon">🔑</span> .auth_key</span>
+                <span style="font-size: 11px; color: #b026ff;">AUTH KEY</span>
+            </div>
+            <div class="file-item" onclick="alert('Opening system.log...')">
+                <span><span class="file-icon">📋</span> system.log</span>
+                <span style="font-size: 11px;">Log File (2.3 MB)</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Investigator</title>
+    <style>
+        body { background: #0a0a0a; color: #00ff41; font-family: 'Courier New', monospace; padding: 20px; margin: 0; }
+        .module-header { text-align: center; border-bottom: 2px solid #b026ff; padding-bottom: 15px; margin-bottom: 20px; }
+        .module-header h1 { color: #b026ff; text-shadow: 0 0 10px #b026ff; }
+        .panel { background: #1a1a1a; border: 2px solid #00ff41; border-radius: 5px; padding: 20px; margin: 15px 0; }
+        .panel h3 { color: #00d9ff; }
+        button { background: #0a0a0a; color: #00ff41; border: 1px solid #00ff41; padding: 10px 20px; margin: 5px; cursor: pointer; border-radius: 3px; }
+        button:hover { background: #00ff41; color: #0a0a0a; }
+        .analysis-box { background: #0a0a0a; border: 1px solid #00ff41; padding: 15px; border-radius: 3px; margin-top: 10px; max-height: 200px; overflow-y: auto; font-size: 11px; }
+        input { background: #0a0a0a; color: #00ff41; border: 1px solid #00ff41; padding: 8px; border-radius: 3px; width: 300px; }
+    </style>
+</head>
+<body>
+    <div class="module-header">
+        <h1>🔍 INVESTIGATOR - EKM Analyzer</h1>
+        <p>Memory crystal inspector and vector decoder</p>
+    </div>
+    <div class="panel">
+        <h3>Memory Crystal Analysis</h3>
+        <input type="text" placeholder="Enter crystal ID or query..." id="queryInput">
+        <button onclick="analyzeMemory()">🔍 Analyze</button>
+        <button onclick="decodeVectors()">🧬 Decode Vectors</button>
+        <button onclick="deepScan()">🔬 Deep Scan</button>
+        <div class="analysis-box" id="analysisOutput">
+            Ready for analysis...
+        </div>
+    </div>
+    <div class="panel">
+        <h3>Vector Database Inspector</h3>
+        <p>📊 Total Vectors: 48,392</p>
+        <p>🧩 Dimensions: 1536</p>
+        <p>📁 Collections: 17</p>
+        <p>🔗 Cross-references: 12,847</p>
+        <button onclick="alert('📊 Visualizing vectors...')">📊 Visualize</button>
+        <button onclick="alert('🔍 Searching similar...')">🔍 Find Similar</button>
+    </div>
+    <div class="panel">
+        <h3>Memory Patterns</h3>
+        <div class="analysis-box">
+            <p>🧠 Detected pattern: Recurring topic about AI sovereignty</p>
+            <p>🔗 Connection strength: 0.87</p>
+            <p>📅 First occurrence: 2023-08-15</p>
+            <p>🔄 Frequency: 142 instances</p>
+            <p>🎯 Confidence: 94.3%</p>
+        </div>
+    </div>
+    <div class="panel">
+        <h3>EKM (Extended Knowledge Memory)</h3>
+        <button onclick="alert('🔄 Rebuilding index...')">🔄 Rebuild Index</button>
+        <button onclick="alert('🧹 Cleaning orphaned vectors...')">🧹 Clean</button>
+        <button onclick="alert('💾 Exporting memories...')">💾 Export</button>
+        <button onclick="alert('📥 Importing data...')">📥 Import</button>
+    </div>
+    <script>
+        const output = document.getElementById('analysisOutput');
+        function addOutput(text) {
+            output.innerHTML += '<p>' + text + '</p>';
+            output.scrollTop = output.scrollHeight;
+        }
+        function analyzeMemory() {
+            const query = document.getElementById('queryInput').value || 'recent memories';
+            output.innerHTML = '';
+            addOutput('🔍 Analyzing: ' + query);
+            setTimeout(() => {
+                addOutput('📊 Found 47 matching memory crystals');
+                addOutput('🧬 Vector similarity: 0.89');
+                addOutput('📅 Date range: 2023-01-01 to 2024-10-03');
+                addOutput('🔗 Cross-references: 23 related memories');
+                addOutput('✅ Analysis complete');
+            }, 1000);
+        }
+        function decodeVectors() {
+            output.innerHTML = '';
+            addOutput('🧬 Decoding vectors...');
+            setTimeout(() => {
+                addOutput('Vector 1: [0.234, -0.567, 0.891, ...]');
+                addOutput('Vector 2: [0.145, 0.723, -0.432, ...]');
+                addOutput('Semantic meaning: AI development concepts');
+                addOutput('✅ Decode complete');
+            }, 800);
+        }
+        function deepScan() {
+            output.innerHTML = '';
+            addOutput('🔬 Initiating deep scan...');
+            setTimeout(() => {
+                addOutput('Scanning memory banks...');
+                addOutput('Checking vector integrity...');
+                addOutput('Analyzing temporal patterns...');
+                addOutput('Validating cross-references...');
+                addOutput('✅ Deep scan complete - No anomalies detected');
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

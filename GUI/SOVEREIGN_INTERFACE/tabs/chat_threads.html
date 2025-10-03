@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Threads</title>
+    <style>
+        body { background: #0a0a0a; color: #00ff41; font-family: 'Courier New', monospace; padding: 20px; margin: 0; }
+        .module-header { text-align: center; border-bottom: 2px solid #b026ff; padding-bottom: 15px; margin-bottom: 20px; }
+        .module-header h1 { color: #b026ff; text-shadow: 0 0 10px #b026ff; }
+        .chat-container { display: grid; grid-template-columns: 250px 1fr; gap: 15px; height: 600px; }
+        .thread-list { background: #1a1a1a; border: 2px solid #00ff41; border-radius: 5px; padding: 15px; overflow-y: auto; }
+        .thread-item { background: #0a0a0a; border: 1px solid #00ff41; padding: 10px; margin: 5px 0; border-radius: 3px; cursor: pointer; font-size: 12px; }
+        .thread-item:hover { background: #00ff41; color: #0a0a0a; }
+        .thread-item.active { border-color: #b026ff; background: #1a1a2a; }
+        .chat-viewer { background: #1a1a1a; border: 2px solid #00ff41; border-radius: 5px; padding: 20px; overflow-y: auto; }
+        .message { margin: 15px 0; padding: 10px; border-radius: 5px; }
+        .message.user { background: #0a2a0a; border-left: 3px solid #00ff41; }
+        .message.assistant { background: #1a0a2a; border-left: 3px solid #b026ff; }
+        .message-header { font-size: 11px; color: #00d9ff; margin-bottom: 5px; }
+        .message-content { font-size: 12px; line-height: 1.5; }
+        button { background: #0a0a0a; color: #00ff41; border: 1px solid #00ff41; padding: 8px 16px; margin: 5px 0; cursor: pointer; border-radius: 3px; width: 100%; }
+        button:hover { background: #00ff41; color: #0a0a0a; }
+    </style>
+</head>
+<body>
+    <div class="module-header">
+        <h1>🧾 CHAT THREADS - Live Chat Log Viewer</h1>
+        <p>View conversations across Claude, GPT, Echo, Gemini</p>
+    </div>
+    <div class="chat-container">
+        <div class="thread-list">
+            <h3 style="color: #00d9ff; margin-bottom: 15px;">Threads</h3>
+            <button onclick="alert('➕ Creating new thread...')">➕ New Thread</button>
+            <div class="thread-item active" onclick="loadThread(1)">
+                <div style="font-weight: bold;">💬 Echo Prime</div>
+                <div style="font-size: 10px; color: #808080;">15 messages • 2h ago</div>
+            </div>
+            <div class="thread-item" onclick="loadThread(2)">
+                <div style="font-weight: bold;">🤖 Claude</div>
+                <div style="font-size: 10px; color: #808080;">42 messages • 1d ago</div>
+            </div>
+            <div class="thread-item" onclick="loadThread(3)">
+                <div style="font-weight: bold;">🧠 GPT-4</div>
+                <div style="font-size: 10px; color: #808080;">28 messages • 3d ago</div>
+            </div>
+            <div class="thread-item" onclick="loadThread(4)">
+                <div style="font-weight: bold;">✨ Gemini</div>
+                <div style="font-size: 10px; color: #808080;">19 messages • 1w ago</div>
+            </div>
+            <div class="thread-item" onclick="loadThread(5)">
+                <div style="font-weight: bold;">🌐 Swarm Brain</div>
+                <div style="font-size: 10px; color: #808080;">87 messages • 2w ago</div>
+            </div>
+        </div>
+        <div class="chat-viewer" id="chatViewer">
+            <div class="message user">
+                <div class="message-header">👤 Commander • 18:30:15</div>
+                <div class="message-content">Echo, show me the status of all active agents.</div>
+            </div>
+            <div class="message assistant">
+                <div class="message-header">🧠 Echo Prime • 18:30:17</div>
+                <div class="message-content">Certainly, Commander. Currently, I have 4 active agents running: Black Dragon (Security Monitor), Data Hunter (Information Gatherer), Shield Guardian (Network Defense), and Chat Monitor (Conversation Logger). All systems are nominal. Would you like details on any specific agent?</div>
+            </div>
+            <div class="message user">
+                <div class="message-header">👤 Commander • 18:31:02</div>
+                <div class="message-content">Focus on Black Dragon. What's its current status?</div>
+            </div>
+            <div class="message assistant">
+                <div class="message-header">🧠 Echo Prime • 18:31:04</div>
+                <div class="message-content">Black Dragon is operating at peak efficiency. It has detected and blocked 247 potential threats in the last 24 hours. The security perimeter is fully intact, and all intrusion detection systems are active. No anomalies detected. The agent is currently monitoring network traffic on all interfaces.</div>
+            </div>
+            <div class="message user">
+                <div class="message-header">👤 Commander • 18:32:15</div>
+                <div class="message-content">Excellent work. Maintain vigilance.</div>
+            </div>
+            <div class="message assistant">
+                <div class="message-header">🧠 Echo Prime • 18:32:16</div>
+                <div class="message-content">Affirmative, Commander. All systems remain on high alert. I will notify you immediately if any situation requires your attention.</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function loadThread(id) {
+            const threads = document.querySelectorAll('.thread-item');
+            threads.forEach((t, i) => {
+                t.classList.toggle('active', i === id - 1);
+            });
+            alert('Loading thread ' + id + '...');
+        }
+    </script>
+</body>
+</html>

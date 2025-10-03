@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Device Ops</title>
+    <style>
+        body { background: #0a0a0a; color: #00ff41; font-family: 'Courier New', monospace; padding: 20px; margin: 0; }
+        .module-header { text-align: center; border-bottom: 2px solid #b026ff; padding-bottom: 15px; margin-bottom: 20px; }
+        .module-header h1 { color: #b026ff; text-shadow: 0 0 10px #b026ff; }
+        .device-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .device { background: #1a1a1a; border: 2px solid #00ff41; border-radius: 5px; padding: 15px; cursor: pointer; }
+        .device:hover { border-color: #b026ff; box-shadow: 0 0 10px #b026ff; }
+        .device-name { color: #00d9ff; font-weight: bold; margin-bottom: 5px; }
+        button { background: #0a0a0a; color: #00ff41; border: 1px solid #00ff41; padding: 6px 12px; margin: 3px; cursor: pointer; border-radius: 3px; font-size: 10px; }
+        button:hover { background: #00ff41; color: #0a0a0a; }
+    </style>
+</head>
+<body>
+    <div class="module-header">
+        <h1>🛰 DEVICE OPS - IoT Attack/Defense Dashboard</h1>
+        <p>Alexa/Echo/SmartTV reclamation and control</p>
+    </div>
+    <div class="device-grid">
+        <div class="device">
+            <div class="device-name">🔊 Echo Dot (Living Room)</div>
+            <p style="font-size: 11px;">Status: RECLAIMED ✅</p>
+            <p style="font-size: 11px;">IP: 192.168.1.105</p>
+            <button onclick="alert('🎤 Executing command...')">Command</button>
+            <button onclick="alert('📡 Monitoring...')">Monitor</button>
+        </div>
+        <div class="device">
+            <div class="device-name">📺 Smart TV (Bedroom)</div>
+            <p style="font-size: 11px;">Status: CONTROLLED ✅</p>
+            <p style="font-size: 11px;">IP: 192.168.1.112</p>
+            <button onclick="alert('📺 Sending signal...')">Control</button>
+            <button onclick="alert('🔒 Locking...')">Lock</button>
+        </div>
+        <div class="device">
+            <div class="device-name">💡 Smart Lights</div>
+            <p style="font-size: 11px;">Status: INTEGRATED ✅</p>
+            <p style="font-size: 11px;">Devices: 8 bulbs</p>
+            <button onclick="alert('💡 Toggling...')">Toggle</button>
+            <button onclick="alert('🎨 Color mode...')">Colors</button>
+        </div>
+        <div class="device">
+            <div class="device-name">🔐 Smart Lock</div>
+            <p style="font-size: 11px;">Status: SECURED ✅</p>
+            <p style="font-size: 11px;">Battery: 87%</p>
+            <button onclick="alert('🔓 Unlocking...')">Unlock</button>
+            <button onclick="alert('📜 Log access...')">Logs</button>
+        </div>
+        <div class="device">
+            <div class="device-name">📷 Security Camera</div>
+            <p style="font-size: 11px;">Status: MONITORING ✅</p>
+            <p style="font-size: 11px;">Feed: ACTIVE</p>
+            <button onclick="alert('📹 Opening feed...')">View</button>
+            <button onclick="alert('🎥 Recording...')">Record</button>
+        </div>
+        <div class="device">
+            <div class="device-name">🌡️ Thermostat</div>
+            <p style="font-size: 11px;">Status: CONNECTED ✅</p>
+            <p style="font-size: 11px;">Temp: 72°F</p>
+            <button onclick="alert('⚙️ Adjusting...')">Adjust</button>
+            <button onclick="alert('📊 Stats...')">Stats</button>
+        </div>
+    </div>
+</body>
+</html>

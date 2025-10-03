@@ -1,0 +1,13 @@
+# Python dependencies for Echo Prime X Backend
+# Install with: pip install -r requirements.txt
+
+# Async support
+asyncio
+
+# Optional dependencies for full functionality
+# Uncomment and install as needed:
+
+# redis>=4.5.0          # For Redis memory pillar
+# chromadb>=0.4.0       # For vector database
+# openai>=1.0.0         # For GPT integration
+# anthropic>=0.7.0      # For Claude integration
