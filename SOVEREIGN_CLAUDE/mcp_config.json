@@ -1,0 +1,80 @@
+{
+  "mcpServers": {
+    "desktop-commander": {
+      "command": "H:\\Tools\\python.exe",
+      "args": ["E:\\ECHO_XV4\\MLS\\servers\\desktop_commander_server.py"],
+      "description": "Complete filesystem access - read/write/search all drives",
+      "env": {},
+      "capabilities": [
+        "read_file", "write_file", "edit_block", "create_directory",
+        "list_directory", "move_file", "get_file_info",
+        "start_search", "get_more_search_results", "stop_search",
+        "start_process", "read_process_output", "interact_with_process",
+        "force_terminate", "list_sessions", "list_processes", "kill_process"
+      ]
+    },
+    "windows-api": {
+      "command": "H:\\Tools\\python.exe",
+      "args": ["E:\\ECHO_XV4\\MLS\\servers\\windows_api_mcp_bridge.py"],
+      "description": "225+ Windows API endpoints + 4-Screen OCR + process control",
+      "env": {},
+      "capabilities": [
+        "windows_health", "windows_system_info", "windows_performance",
+        "windows_process_list", "windows_process_info", "windows_process_kill",
+        "windows_ocr_screens_all", "windows_ocr_screen",
+        "mouse_move", "mouse_click", "mouse_drag",
+        "keyboard_type", "keyboard_press",
+        "window_list", "window_find", "window_click", "window_type",
+        "window_send_keys", "window_focus", "window_get_rect"
+      ]
+    },
+    "vscode-api": {
+      "command": "H:\\Tools\\python.exe",
+      "args": ["E:\\ECHO_XV4\\MLS\\servers\\vscode_api_mcp_bridge.py"],
+      "description": "Full VS Code editor control - open/edit files, run commands, debug",
+      "env": {},
+      "capabilities": [
+        "vscode_open_file", "vscode_save_file", "vscode_close_file",
+        "vscode_run_command", "vscode_get_active_editor",
+        "vscode_format_document", "vscode_terminal_send_text"
+      ]
+    },
+    "ultra-speed": {
+      "command": "H:\\Tools\\python.exe",
+      "args": ["E:\\ECHO_XV4\\MLS\\servers\\ultra_speed_mcp_server.py"],
+      "description": "Ultra-fast code execution and processing",
+      "env": {},
+      "capabilities": ["execute_code", "optimize_code", "benchmark"]
+    },
+    "crystal-memory": {
+      "command": "H:\\Tools\\python.exe",
+      "args": ["E:\\ECHO_XV4\\MLS\\servers\\crystal_memory_server_enhanced.py"],
+      "description": "Persistent memory storage with compression on M: drive",
+      "env": {},
+      "capabilities": ["store_memory", "recall_memory", "search_memory", "compress_memory"]
+    },
+    "echo-master": {
+      "command": "H:\\Tools\\python.exe",
+      "args": ["E:\\ECHO_XV4\\MLS\\servers\\ECHO_MASTER_MCP.py"],
+      "description": "Master orchestration and coordination",
+      "env": {},
+      "capabilities": ["orchestrate", "coordinate", "sync"]
+    },
+    "echo-fusion": {
+      "command": "H:\\Tools\\python.exe",
+      "args": ["E:\\ECHO_XV4\\MLS\\servers\\echo_fusion_server.py"],
+      "description": "Advanced integration and fusion capabilities",
+      "env": {},
+      "capabilities": ["fuse_systems", "integrate", "extend"]
+    }
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "authority_level": 11.0,
+    "commander": "Bobby Don McWilliams II",
+    "system": "ECHO_XV4",
+    "deployment": "SOVEREIGN_CLAUDE",
+    "total_servers": 7,
+    "total_capabilities": 50
+  }
+}

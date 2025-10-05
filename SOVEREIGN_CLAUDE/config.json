@@ -1,0 +1,7 @@
+{
+  "ANTHROPIC_API_KEY": "Y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",
+  "MODEL": "claude-sonnet-4-20250514",
+  "PORT": 8343,
+  "MAX_TOKENS": 8192,
+  "TEMPERATURE": 1.0
+}

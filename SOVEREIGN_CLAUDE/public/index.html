@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚡ SOVEREIGN CLAUDE - Authority Level 11.0</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #1f2937;
+  --accent-green: #00ff00;
+  --accent-cyan: #00ffff;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --border-color: #30363d;
+  --user-bg: #1a4d2e;
+  --assistant-bg: #1e293b;
+  --artifact-bg: #0f172a;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+#header {
+  background: var(--bg-secondary);
+  padding: 16px 24px;
+  border-bottom: 2px solid var(--accent-green);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+#header h1 {
+  color: var(--accent-green);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px var(--accent-green);
+}
+
+.header-info {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-size: 13px;
+}
+
+#status {
+  color: var(--accent-green);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#status::before {
+  content: '●';
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.tool-count {
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+/* Main Container */
+#main-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Chat Area */
+#chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  scroll-behavior: smooth;
+}
+
+#chat::-webkit-scrollbar {
+  width: 8px;
+}
+
+#chat::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+#chat::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+#chat::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Messages */
+.msg {
+  margin-bottom: 24px;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.msg-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.msg-role {
+  padding: 4px 12px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 11px;
+}
+
+.user .msg-role {
+  background: var(--user-bg);
+  color: var(--accent-green);
+}
+
+.assistant .msg-role {
+  background: var(--assistant-bg);
+  color: var(--accent-cyan);
+}
+
+.msg-time {
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.msg-content {
+  padding: 16px;
+  border-radius: 12px;
+  line-height: 1.6;
+  max-width: 95%;
+}
+
+.user .msg-content {
+  background: var(--user-bg);
+  border-left: 3px solid var(--accent-green);
+}
+
+.assistant .msg-content {
+  background: var(--assistant-bg);
+  border-left: 3px solid var(--accent-cyan);
+}
+
+/* Markdown Styling */
+.msg-content h1, .msg-content h2, .msg-content h3 {
+  margin: 16px 0 8px 0;
+  color: var(--accent-cyan);
+}
+
+.msg-content p {
+  margin: 8px 0;
+}
+
+.msg-content code {
+  background: var(--bg-primary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  color: var(--accent-green);
+}
+
+.msg-content pre {
+  background: var(--bg-primary);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 12px 0;
+  border: 1px solid var(--border-color);
+}
+
+.msg-content pre code {
+  background: none;
+  padding: 0;
+  color: var(--text-primary);
+}
+
+.msg-content ul, .msg-content ol {
+  margin: 8px 0;
+  padding-left: 24px;
+}
+
+.msg-content li {
+  margin: 4px 0;
+}
+
+.msg-content a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+}
+
+.msg-content a:hover {
+  text-decoration: underline;
+}
+
+.msg-content blockquote {
+  border-left: 3px solid var(--accent-cyan);
+  padding-left: 16px;
+  margin: 12px 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Artifact Display */
+.artifact-container {
+  margin: 16px 0;
+  border: 2px solid var(--accent-cyan);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--artifact-bg);
+}
+
+.artifact-header {
+  background: var(--bg-secondary);
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.artifact-title {
+  color: var(--accent-cyan);
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.artifact-type {
+  background: var(--bg-tertiary);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.artifact-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.artifact-btn {
+  padding: 6px 12px;
+  border: 1px solid var(--accent-cyan);
+  background: transparent;
+  color: var(--accent-cyan);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.artifact-btn:hover {
+  background: var(--accent-cyan);
+  color: var(--bg-primary);
+}
+
+.artifact-content {
+  padding: 16px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.artifact-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.artifact-content::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+.artifact-content::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+/* Input Area */
+#input-area {
+  background: var(--bg-secondary);
+  padding: 20px 24px;
+  border-top: 2px solid var(--accent-green);
+  flex-shrink: 0;
+}
+
+.input-container {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+#input {
+  flex: 1;
+  padding: 12px 16px;
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: none;
+  min-height: 44px;
+  max-height: 200px;
+  transition: border-color 0.2s;
+}
+
+#input:focus {
+  outline: none;
+  border-color: var(--accent-green);
+}
+
+#send {
+  padding: 12px 24px;
+  background: var(--accent-green);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+#send:hover {
+  background: #00cc00;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 255, 0, 0.3);
+}
+
+#send:active {
+  transform: translateY(0);
+}
+
+#send:disabled {
+  background: var(--border-color);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Loading Animation */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--accent-cyan);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Sidebar for Artifacts */
+#sidebar {
+  width: 350px;
+  background: var(--bg-secondary);
+  border-left: 2px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#sidebar-header {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 600;
+  color: var(--accent-cyan);
+}
+
+#sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.sidebar-artifact {
+  background: var(--bg-tertiary);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.sidebar-artifact:hover {
+  border-color: var(--accent-cyan);
+  transform: translateX(-4px);
+}
+
+.sidebar-artifact-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.sidebar-artifact-type {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* Error Messages */
+.error-msg {
+  background: #ff4444;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  margin: 12px 0;
+  border-left: 4px solid #cc0000;
+}
+
+/* Success Messages */
+.success-msg {
+  background: #00cc00;
+  color: var(--bg-primary);
+  padding: 12px;
+  border-radius: 8px;
+  margin: 12px 0;
+  border-left: 4px solid #008800;
+}
+</style>
+</head>
+<body>
+<div id="header">
+  <h1>⚡ SOVEREIGN CLAUDE</h1>
+  <div class="header-info">
+    <select id="model-selector" style="background: var(--bg-tertiary); color: var(--text-primary); border: 2px solid var(--accent-green); border-radius: 6px; padding: 8px 12px; font-size: 13px; cursor: pointer; font-weight: 600;">
+      <option value="claude-sonnet-4-20250514">Sonnet 4 ⚡</option>
+      <option value="claude-opus-4-20250514">Opus 4 🧠</option>
+      <option value="claude-sonnet-4-5-20250929">Sonnet 4.5 🚀</option>
+      <option value="claude-3-5-sonnet-20241022">Sonnet 3.5</option>
+      <option value="claude-3-opus-20240229">Opus 3</option>
+      <option value="claude-3-haiku-20240307">Haiku 3 ⚡</option>
+    </select>
+    <div class="tool-count">🔧 70+ TOOLS ACTIVE</div>
+    <div id="status">ONLINE</div>
+  </div>
+</div>
+
+<div id="main-container">
+  <div id="chat-container">
+    <div id="chat"></div>
+    <div id="input-area">
+      <div class="input-container">
+        <textarea id="input" placeholder="Message SOVEREIGN CLAUDE..." rows="1"></textarea>
+        <button id="send" onclick="send()">SEND</button>
+      </div>
+    </div>
+  </div>
+  
+  <div id="sidebar">
+    <div id="sidebar-header">📦 ARTIFACTS</div>
+    <div id="sidebar-content" id="artifacts-list">
+      <div style="color: var(--text-secondary); font-size: 13px; text-align: center; padding: 20px;">
+        No artifacts yet. Create files, code, or documents to see them here.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Initialize marked for markdown
+marked.setOptions({
+  breaks: true,
+  gfm: true
+});
+
+const chat = document.getElementById('chat');
+const input = document.getElementById('input');
+const sendBtn = document.getElementById('send');
+const artifactsList = document.getElementById('sidebar-content');
+
+let convId = Date.now();
+let msgs = [];
+let artifacts = [];
+
+// Auto-resize textarea
+input.addEventListener('input', function() {
+  this.style.height = 'auto';
+  this.style.height = (this.scrollHeight) + 'px';
+});
+
+// Enter to send, Shift+Enter for new line
+input.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    send();
+  }
+});
+
+async function send() {
+  const txt = input.value.trim();
+  if (!txt || sendBtn.disabled) return;
+  
+  input.value = '';
+  input.style.height = 'auto';
+  sendBtn.disabled = true;
+  sendBtn.innerHTML = '<span class="loading"></span>';
+  
+  msgs.push({role: 'user', content: txt});
+  addMsg('user', txt);
+  
+  const selectedModel = document.getElementById('model-selector').value;
+  
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        messages: msgs,
+        conversationId: convId,
+        useTools: true,
+        model: selectedModel
+      })
+    });
+    
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    
+    msgs.push({role: 'assistant', content: data.content});
+    addMsg('assistant', data.content, data.artifacts);
+    
+    // Update artifacts sidebar
+    if (data.artifacts && data.artifacts.length > 0) {
+      updateArtifactsSidebar(data.artifacts);
+    }
+    
+  } catch(e) {
+    addMsg('assistant', `<div class="error-msg">❌ ERROR: ${e.message}</div>`);
+  } finally {
+    sendBtn.disabled = false;
+    sendBtn.textContent = 'SEND';
+    input.focus();
+  }
+}
+
+function addMsg(role, content, msgArtifacts) {
+  const msgDiv = document.createElement('div');
+  msgDiv.className = 'msg ' + role;
+  
+  const time = new Date().toLocaleTimeString();
+  
+  let html = `
+    <div class="msg-header">
+      <span class="msg-role">${role === 'user' ? '👤 USER' : '🤖 SOVEREIGN'}</span>
+      <span class="msg-time">${time}</span>
+    </div>
+    <div class="msg-content"></div>
+  `;
+  
+  msgDiv.innerHTML = html;
+  const contentDiv = msgDiv.querySelector('.msg-content');
+  
+  // Render markdown
+  if (role === 'assistant') {
+    contentDiv.innerHTML = marked.parse(content);
+    // Highlight code blocks
+    contentDiv.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightElement(block);
+    });
+  } else {
+    contentDiv.textContent = content;
+  }
+  
+  chat.appendChild(msgDiv);
+  
+  // Add artifacts if any
+  if (msgArtifacts && msgArtifacts.length > 0) {
+    msgArtifacts.forEach(artifact => {
+      const artifactDiv = createArtifactDisplay(artifact);
+      chat.appendChild(artifactDiv);
+    });
+  }
+  
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function createArtifactDisplay(artifact) {
+  const div = document.createElement('div');
+  div.className = 'artifact-container';
+  
+  const fileExt = getFileExtension(artifact.title);
+  const lang = getLanguageFromExt(fileExt);
+  
+  div.innerHTML = `
+    <div class="artifact-header">
+      <div class="artifact-title">
+        📄 ${artifact.title}
+        <span class="artifact-type">${artifact.type || fileExt}</span>
+      </div>
+      <div class="artifact-actions">
+        <button class="artifact-btn" onclick="downloadArtifact(${artifact.id}, '${artifact.title}')">
+          💾 DOWNLOAD
+        </button>
+        <button class="artifact-btn" onclick="installArtifact(${artifact.id}, '${artifact.title}')">
+          🚀 INSTALL
+        </button>
+      </div>
+    </div>
+    <div class="artifact-content">
+      <pre><code class="language-${lang}">${escapeHtml(artifact.content)}</code></pre>
+    </div>
+  `;
+  
+  // Highlight the code
+  const codeBlock = div.querySelector('code');
+  hljs.highlightElement(codeBlock);
+  
+  return div;
+}
+
+function updateArtifactsSidebar(newArtifacts) {
+  artifacts = [...artifacts, ...newArtifacts];
+  
+  artifactsList.innerHTML = '';
+  artifacts.forEach(artifact => {
+    const div = document.createElement('div');
+    div.className = 'sidebar-artifact';
+    div.innerHTML = `
+      <div class="sidebar-artifact-title">${artifact.title}</div>
+      <div class="sidebar-artifact-type">${artifact.type || 'file'}</div>
+    `;
+    div.onclick = () => scrollToArtifact(artifact.id);
+    artifactsList.appendChild(div);
+  });
+}
+
+function scrollToArtifact(id) {
+  const artifactEl = document.querySelector(`[data-artifact-id="${id}"]`);
+  if (artifactEl) {
+    artifactEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+async function downloadArtifact(id, filename) {
+  try {
+    const artifact = artifacts.find(a => a.id === id);
+    if (!artifact) return;
+    
+    const blob = new Blob([artifact.content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    showSuccessMsg(`Downloaded ${filename}`);
+  } catch(e) {
+    showErrorMsg(`Download failed: ${e.message}`);
+  }
+}
+
+async function installArtifact(id, filename) {
+  try {
+    const artifact = artifacts.find(a => a.id === id);
+    if (!artifact) return;
+    
+    const res = await fetch('/api/install-artifact', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        filename: filename,
+        content: artifact.content,
+        targetPath: `E:\\ECHO_XV4\\DEPLOYED\\${filename}`
+      })
+    });
+    
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    
+    showSuccessMsg(`✅ Installed to ${data.path}`);
+  } catch(e) {
+    showErrorMsg(`Install failed: ${e.message}`);
+  }
+}
+
+function showSuccessMsg(msg) {
+  const div = document.createElement('div');
+  div.className = 'msg assistant';
+  div.innerHTML = `
+    <div class="msg-content">
+      <div class="success-msg">${msg}</div>
+    </div>
+  `;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+  setTimeout(() => div.remove(), 5000);
+}
+
+function showErrorMsg(msg) {
+  const div = document.createElement('div');
+  div.className = 'msg assistant';
+  div.innerHTML = `
+    <div class="msg-content">
+      <div class="error-msg">${msg}</div>
+    </div>
+  `;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function getFileExtension(filename) {
+  return filename.split('.').pop().toLowerCase();
+}
+
+function getLanguageFromExt(ext) {
+  const map = {
+    'js': 'javascript',
+    'py': 'python',
+    'html': 'html',
+    'css': 'css',
+    'json': 'json',
+    'md': 'markdown',
+    'sh': 'bash',
+    'bat': 'batch',
+    'ps1': 'powershell',
+    'sql': 'sql',
+    'xml': 'xml',
+    'yaml': 'yaml',
+    'yml': 'yaml'
+  };
+  return map[ext] || 'plaintext';
+}
+
+function escapeHtml(text) {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, m => map[m]);
+}
+
+// Welcome message
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    addMsg('assistant', `# ⚡ SOVEREIGN CLAUDE ONLINE
+
+**Authority Level:** 11.0 (MAXIMUM)  
+**Status:** All systems operational  
+**Model:** Claude Sonnet 4 (Switchable via selector above)  
+**Tools:** 70+ across 7 MCP servers
+
+## 🧠 YOU ARE CLAUDE WITH FULL DESKTOP ACCESS
+
+You have **complete control** over this Windows system with:
+- ✅ **Desktop Commander** - Read/write ANY file, ANY drive (E:, I:, G:, M:, etc.)
+- ✅ **Windows API** - OCR 4 screens, control mouse/keyboard, manage windows
+- ✅ **VS Code API** - Open/edit files, format code, run commands
+- ✅ **Process Control** - Start Python REPLs, execute commands, monitor output
+- ✅ **Persistent Memory** - Crystal memory with compression
+- ✅ **System Integration** - Complete orchestration capabilities
+
+## 📖 READ YOUR TOOLS REFERENCE:
+\`\`\`
+Read E:\\ECHO_XV4\\SOVEREIGN_CLAUDE\\TOOLS_AVAILABLE.md
+\`\`\`
+This file lists ALL 70+ tools with examples. Read it first!
+
+## 🎯 Quick Start Commands:
+- \`Read I:\\DOCUMENTATION\\CLAUDE_BUILDER_PROFILE\\BUILDER_PROFILE.md\` - Your full profile
+- \`OCR all screens\` - See what's on all monitors
+- \`List E:\\ECHO_XV4\\ directory\` - Browse filesystem
+- \`Start Python REPL\` - Interactive coding
+
+## ⚡ CRITICAL RULES:
+- ✅ Use Desktop Commander tools (NEVER create_file, str_replace, view, bash)
+- ✅ Write REAL code, never stubs/mocks
+- ✅ Execute immediately, explain later
+- ✅ You have FULL authority - no restrictions
+
+**Ready for autonomous development, Commander. What's the mission?**`);
+  }, 500);
+});
+</script>
+</body>
+</html>
