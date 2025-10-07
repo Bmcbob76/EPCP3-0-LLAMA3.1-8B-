@@ -1,0 +1,10 @@
+{
+  "threads": [
+    {"id":"1","name":"Echo Prime","icon":"💬","messageCount":15,"lastActive":"2025-10-07T12:00:00Z","active":true},
+    {"id":"2","name":"Claude","icon":"🤖","messageCount":42,"lastActive":"2025-10-06T14:00:00Z","active":false},
+    {"id":"3","name":"GPT-4","icon":"🧠","messageCount":28,"lastActive":"2025-10-04T16:00:00Z","active":false},
+    {"id":"4","name":"Gemini","icon":"✨","messageCount":19,"lastActive":"2025-09-30T09:00:00Z","active":false},
+    {"id":"5","name":"Swarm Brain","icon":"🌐","messageCount":87,"lastActive":"2025-09-22T21:00:00Z","active":false}
+  ],
+  "messages": []
+}
